@@ -5,14 +5,14 @@ var bio = {
 	'welcomeMessage': '☯ “Do not go where the path may lead, go instead where there is no path and leave a trail.” ☯ - Ralph Waldo Emerson',
 	'birth': {
 		'date': '20 December 1992',
-		'location': 'Cuddalore, TamilNadu, India'
+		'location': 'Pondicherry, India'
 	},
 	'contact': {
-		'email': 'revathimeenshi@gmail.com',
+		'email': 'revathimeenashi@gmail.com',
 		'mobile': '555-123-985',
 	},
 	'skills': ['Programming','Handicraft Works','Sketching','Teaching','Painting'],
-	'bioPic': 'images/rev.jpg'
+	'biopic': 'images/rev.jpg'
 };
  //Display Function for Bio Section:
  bio.display = function () {
@@ -34,7 +34,7 @@ var bio = {
     $footerContacts.append(formattedHTMLheaderRole, formattedHTMLbirthdate, formattedHTMLbirthplace, formattedHTMLemail, formattedHTMLmobile);
     
     // Append the image and the welcome message
-    $('#header').append(HTMLbioPic.replace('%data%', bio.bioPic).replace('%alt%', bio.name));
+    $('#header').append(HTMLbioPic.replace('%data%', bio.biopic).replace('%alt%', bio.name));
     $('#header').append(HTMLwelcomeMsg.replace('%data%', bio.welcomeMessage));
 
     if (bio.skills.length) {
@@ -46,11 +46,8 @@ var bio = {
         }
     }   
  };
-//Invocation
-bio.display();
 
 //Education Section
-
 var education = {
 	'schools' : [
 		{
@@ -119,8 +116,6 @@ education.display = function () {
 			$('.online-entry:last a').attr('href', education.onlineCourse[course].url).attr('target', '_blank');
 		}
 };
-//Invocation
-education.display();
 
 //Work Section:
 var work = {
@@ -129,14 +124,14 @@ var work = {
 		'employer': 'Home Decor',
 		'title': 'Interior Designer',
 		'location': 'Pondicherry, India',
-		'dates': ['2014-2015'],
+		'dates': '2014-2015',
 		'description': 'Interior design is the art and science of enhancing the interiors, sometimes including the exterior, of a space or building, to achieve a healthier and more aesthetically pleasing environment for the end user. An interior designer is someone who plans, researches, coordinates, and manages such projects. Interior design is a multifaceted profession that includes conceptual development, space planning, site inspections, programming, research, communicating with the stakeholders of a project, construction management, and execution of the design.',
 		'url': 'https://en.wikipedia.org/wiki/Interior_design'
 	},{
 		'employer': 'Handicraft Products',
 		'title': 'Designer',
 		'location': 'Pondicherry, India',
-		'dates': ['2014-2016'],
+		'dates': '2014-2016',
 		'description': 'A handicraft, sometimes more precisely expressed as artisanal handicraft or handmade, is any of a wide variety of types of work where useful and decorative objects are made completely by hand or by using only simple tools. It is a traditional main sector of craft, and applies to a wide range of creative and design activities that are related to making things with ones hands and skill, including work with textiles, moldable and rigid materials, paper, plant fibers, etc. Usually the term is applied to traditional techniques of creating items (whether for personal use or as products) that are both practical and aesthetic.Handicraft industries are those that produces things with hands to meet the needs of the people in their locality.Machines are not used.',
 		'url': 'https://en.wikipedia.org/wiki/Handicraft'
 	}
@@ -168,8 +163,6 @@ work.display = function () {
 		$('.work-entry:last a').attr('href', work.jobs[job].url).attr('target','_blank');
 	}
 };
-//Invocation
-work.display();
 
 //Project Section:
 var projects = {
@@ -213,8 +206,13 @@ projects.display = function() {
 		$('.project-entry:last a').attr('href', projects.project[project].url).attr('target', '_blank');
 	}
 };
-//Invocation
-projects.display();
+
 
 //MAP Section:
 $('#mapDiv').append(googleMap);
+
+//Invocation
+bio.display();
+education.display();
+work.display();
+projects.display();
