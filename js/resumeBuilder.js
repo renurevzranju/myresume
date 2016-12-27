@@ -7,9 +7,10 @@ var bio = {
 		'date': '20 December 1992',
 		'location': 'Pondicherry, India'
 	},
-	'contact': {
+	'contacts': {
 		'email': 'revathimeenashi@gmail.com',
 		'mobile': '555-123-985',
+		'github': 'renurevzranju'
 	},
 	'skills': ['Programming','Handicraft Works','Sketching','Teaching','Painting'],
 	'biopic': 'images/rev.jpg'
@@ -26,12 +27,13 @@ var bio = {
     var formattedHTMLheaderRole = HTMLheaderRole.replace('%data%', bio.role);
     var formattedHTMLbirthdate = HTMLbirthdate.replace('%data%', bio.birth.date);
     var formattedHTMLbirthplace = HTMLbirthplace.replace('%data%', bio.birth.location);
-    var formattedHTMLemail = HTMLemail.replace('%data%', bio.contact.email);
-    var formattedHTMLmobile = HTMLmobile.replace('%data%', bio.contact.mobile);
+    var formattedHTMLemail = HTMLemail.replace('%data%', bio.contacts.email);
+    var formattedHTMLmobile = HTMLmobile.replace('%data%', bio.contacts.mobile);
+    var formattedHTMLgithub = HTMLgithub.replace('%data%', bio.contacts.github);
 
     // Append the role, birth and contact information at the header of the website
-    $topContacts.append(formattedHTMLheaderRole, formattedHTMLbirthdate, formattedHTMLbirthplace, formattedHTMLemail, formattedHTMLmobile);
-    $footerContacts.append(formattedHTMLheaderRole, formattedHTMLbirthdate, formattedHTMLbirthplace, formattedHTMLemail, formattedHTMLmobile);
+    $topContacts.append(formattedHTMLheaderRole, formattedHTMLbirthdate, formattedHTMLbirthplace, formattedHTMLemail, formattedHTMLmobile, formattedHTMLgithub);
+    $footerContacts.append(formattedHTMLheaderRole, formattedHTMLbirthdate, formattedHTMLbirthplace, formattedHTMLemail, formattedHTMLmobile, formattedHTMLgithub);
     
     // Append the image and the welcome message
     $('#header').append(HTMLbioPic.replace('%data%', bio.biopic).replace('%alt%', bio.name));
@@ -66,12 +68,12 @@ var education = {
 			'url': 'https://en.wikipedia.org/wiki/Pondicherry_University'
 		}
 	],
-	'onlineCourse' : [
+	'onlineCourses' : [
 		{
 			'title': 'Online Course',
 			'school': 'Udacity',
 			'major': 'Front-End Web Development',
-			'date': '2016',
+			'dates': '2016',
 			'url': 'https://en.wikipedia.org/wiki/Udacity'
 		}
 	]
@@ -103,17 +105,17 @@ education.display = function () {
         // Append the URL in the <a href> from the school name. Also add the target=_blank property to the link.
         $('.education-entry:last a').attr('href', education.schools[school].url).attr('target', '_blank');
 	}
-		var onlineLength = education.onlineCourse.length;
+		var onlineLength = education.onlineCourses.length;
 		for (var course = 0; course < onlineLength; course++) {
 			$('#education').append(HTMLonlineStart);
 
 			var $lastOnlineEntry = $('.online-entry:last');
-			var formattedcourseTitle = HTMLonlineTitle.replace('%data%', education.onlineCourse[course].title) + HTMLonlineSchool.replace('%data%', education.onlineCourse[course].school);
-			var formattedHTMLcourseDates = HTMLonlineDates.replace('%data%', education.onlineCourse[course].date);
-			var formattedHTMLcourseMajor = HTMLonlineMajor.replace('%data%', education.onlineCourse[course].major);
+			var formattedcourseTitle = HTMLonlineTitle.replace('%data%', education.onlineCourses[course].title) + HTMLonlineSchool.replace('%data%', education.onlineCourses[course].school);
+			var formattedHTMLcourseDates = HTMLonlineDates.replace('%data%', education.onlineCourses[course].dates);
+			var formattedHTMLcourseMajor = HTMLonlineMajor.replace('%data%', education.onlineCourses[course].major);
 			$lastOnlineEntry.append(formattedcourseTitle, formattedHTMLcourseDates, formattedHTMLcourseMajor);
 
-			$('.online-entry:last a').attr('href', education.onlineCourse[course].url).attr('target', '_blank');
+			$('.online-entry:last a').attr('href', education.onlineCourses[course].url).attr('target', '_blank');
 		}
 };
 
@@ -150,23 +152,17 @@ work.display = function () {
 		var formattedHTMLworkEmployer = HTMLworkEmployer.replace('%data%', work.jobs[job].employer) + HTMLworkTitle.replace('%data%', work.jobs[job].title);
 		var formattedHTMLworkLocation = HTMLworkLocation.replace('%data%', work.jobs[job].location);
 		var formattedHTMLworkDescription = HTMLworkDescription.replace('%data%', work.jobs[job].description);
-
+		var formattedHTMLworkDates = HTMLworkDates.replace('%data%', work.jobs[job].dates);
+		
 		$lastWorkEntry.append(formattedHTMLworkEmployer);
-		if (work.jobs[job].dates.length > 0) {
-			var  wordlength = work.jobs[job].dates.length;
-			for (var date = 0; date < wordlength; date++) {
-				$lastWorkEntry.append(HTMLworkDates.replace('%data%', work.jobs[job].dates[date]));
-			}
-		}
-
-		$lastWorkEntry.append(formattedHTMLworkDescription, formattedHTMLworkLocation);
+		$lastWorkEntry.append(formattedHTMLworkDates, formattedHTMLworkDescription, formattedHTMLworkLocation);
 		$('.work-entry:last a').attr('href', work.jobs[job].url).attr('target','_blank');
 	}
 };
 
 //Project Section:
 var projects = {
-	'project': [
+	'projects': [
 	{
 		'title': 'Metasurface based circular Polarized Reconfigurable Antenna',
 		'dates': '2015-2016',
@@ -185,25 +181,25 @@ var projects = {
 
 //Display the Project Section:
 projects.display = function() {
-	var projectLength = projects.project.length;
+	var projectLength = projects.projects.length;
 	for (var project = 0; project < projectLength; project++) {
 		$('#projects').append(HTMLprojectStart);
 		//Creating variables and appending it
 		var $lastProjectEntry = $('.project-entry:last');
-		var formattedHTMLprojectTitle = HTMLprojectTitle.replace('%data%', projects.project[project].title);
-		var formattedHTMLprojectDates = HTMLprojectDates.replace('%data%', projects.project[project].dates);
-		var formattedHTMLprojectDescription = HTMLprojectDescription.replace('%data%', projects.project[project].description);
+		var formattedHTMLprojectTitle = HTMLprojectTitle.replace('%data%', projects.projects[project].title);
+		var formattedHTMLprojectDates = HTMLprojectDates.replace('%data%', projects.projects[project].dates);
+		var formattedHTMLprojectDescription = HTMLprojectDescription.replace('%data%', projects.projects[project].description);
 
 		$lastProjectEntry.append(formattedHTMLprojectTitle, formattedHTMLprojectDates, formattedHTMLprojectDescription);
 
 		//Append images through loop
-		if (projects.project[project].images.length > 0) {
-			var wordLength = projects.project[project].images.length;
+		if (projects.projects[project].images.length > 0) {
+			var wordLength = projects.projects[project].images.length;
 			for (var image = 0; image < wordLength; image++) {
-				$lastProjectEntry.append(HTMLprojectImage.replace('%data%', projects.project[project].images[image]));
+				$lastProjectEntry.append(HTMLprojectImage.replace('%data%', projects.projects[project].images[image]));
 			}
 		}
-		$('.project-entry:last a').attr('href', projects.project[project].url).attr('target', '_blank');
+		$('.project-entry:last a').attr('href', projects.projects[project].url).attr('target', '_blank');
 	}
 };
 

@@ -20,6 +20,7 @@ var HTMLbirthdate = '<li class="flex-item"><span class="black-text">Born</span><
 var HTMLbirthplace = '<li class="flex-item"><span class="black-text">At</span><span class="white-text">%data%</span></li>';
 var HTMLmobile = '<li class="flex-item"><span class="black-text">mobile</span><span class="white-text">%data%</span></li>';
 var HTMLemail = '<li class="flex-item"><span class="black-text">email</span><span class="white-text">%data%</span></li>';
+var HTMLgithub = '<li class="flex-item"><span class="black-text">github</span><span class="white-text">%data%</span></li>';
 
 var HTMLbioPic = '<img src="%data%" class="biopic" alt="%alt%">';
 var HTMLwelcomeMsg = '<span class="welcome-message">%data%</span>';
@@ -209,7 +210,7 @@ function initializeMap() {
     var marker = new google.maps.Marker({
       map: map,
       position: placeData.geometry.location,
-      icon: './images/icon.jpg'
+      icon: './images/blue.png'
     });
 
     var contentString = '<div id="content"><div id="siteNotice"></div>' +
